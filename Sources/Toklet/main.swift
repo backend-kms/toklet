@@ -12,12 +12,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
+        NSApp.mainMenu = AppMenu.make()
         let view = ContentView(store: store, copy: { [weak self] text in self?.copyAndClose(text) },
                                copyTitle: { [weak self] text in self?.copyToClipboard(text) ?? false },
                                applyShortcut: { [weak self] shortcut in self?.applyShortcut(shortcut) ?? false })
         panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 900, height: 600),
                         styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
-        panel.title = "Mac Note"
+        panel.title = "Toklet"
         panel.contentMinSize = NSSize(width: 780, height: 520)
         panel.isReleasedWhenClosed = false
         panel.isFloatingPanel = true
@@ -30,8 +31,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem.button?.title = "</>"
         statusItem.button?.font = .monospacedSystemFont(ofSize: 14, weight: .medium)
-        statusItem.button?.setAccessibilityLabel("Mac Note 열기")
-        statusItem.button?.toolTip = "Mac Note · \(activeShortcut.label)"
+        statusItem.button?.setAccessibilityLabel("Toklet 열기")
+        statusItem.button?.toolTip = "Toklet · \(activeShortcut.label)"
         statusItem.button?.target = self
         statusItem.button?.action = #selector(statusItemClicked)
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
@@ -93,7 +94,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         guard hotKey.register(shortcut) else { return false }
         activeShortcut = shortcut
         shortcut.persist()
-        statusItem.button?.toolTip = "Mac Note · \(shortcut.label)"
+        statusItem.button?.toolTip = "Toklet · \(shortcut.label)"
         return true
     }
     func windowShouldClose(_ sender: NSWindow) -> Bool { hide(); return false }

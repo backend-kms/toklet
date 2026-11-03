@@ -11,10 +11,13 @@ struct Shortcut: Equatable {
         ("⌘⇧ Command + Shift", UInt32(cmdKey | shiftKey)),
         ("⌘⌥ Command + Option", UInt32(cmdKey | optionKey))
     ]
-    static var saved: Shortcut {
-        let defaults = UserDefaults.standard
-        return Shortcut(key: UInt32(defaults.object(forKey: "shortcut.key") as? Int ?? 49),
-                        modifiers: UInt32(defaults.object(forKey: "shortcut.modifiers") as? Int ?? Int(optionKey)))
+    static var saved: Shortcut { load() }
+
+    static func load(from defaults: UserDefaults = .standard) -> Shortcut {
+        let legacy = defaults.persistentDomain(forName: "local.mac-note.app")
+            ?? defaults.persistentDomain(forName: "MacNote") ?? [:]
+        return Shortcut(key: UInt32(defaults.object(forKey: "shortcut.key") as? Int ?? legacy["shortcut.key"] as? Int ?? 49),
+                        modifiers: UInt32(defaults.object(forKey: "shortcut.modifiers") as? Int ?? legacy["shortcut.modifiers"] as? Int ?? Int(optionKey)))
     }
     var label: String {
         let modifier = Self.modifierOptions.first { $0.1 == modifiers }?.0 ?? ""
@@ -45,7 +48,7 @@ final class HotKeyManager {
     func register(_ shortcut: Shortcut) -> Bool {
         // Register first: a conflicting replacement must not disable the current shortcut.
         var next: EventHotKeyRef?
-        let id = EventHotKeyID(signature: OSType(0x4D4E4F54), id: 1)
+        let id = EventHotKeyID(signature: OSType(0x544F4B4C), id: 1)
         let result = RegisterEventHotKey(shortcut.key, shortcut.modifiers, id,
                                         GetApplicationEventTarget(), 0, &next)
         guard result == noErr else { return false }

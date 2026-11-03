@@ -2,8 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "mac-note",
+    name: "Toklet",
     platforms: [.macOS(.v13)],
-    products: [.executable(name: "MacNote", targets: ["MacNote"])],
-    targets: [.executableTarget(name: "MacNote", linkerSettings: [.linkedFramework("Carbon")])]
+    products: [.executable(name: "Toklet", targets: ["Toklet"])],
+    targets: [
+        .executableTarget(name: "Toklet", linkerSettings: [.linkedFramework("Carbon")]),
+        .testTarget(name: "TokletTests", dependencies: ["Toklet"])
+    ]
 )
