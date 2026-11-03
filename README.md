@@ -3,6 +3,27 @@
 개발 중 자주 쓰는 토큰, 테스트 값, 명령어를 프로젝트별로 적어두고 바로 복사하는 macOS 메뉴 막대 메모장.
 SwiftUI + AppKit + Carbon으로 만들었으며 외부 패키지, 로그인, 서버가 없습니다.
 
+## 미리보기
+
+샘플 데이터로 실제 SwiftUI 화면을 렌더링한 예시입니다. 표시된 토큰과 요청 값은 예시용입니다.
+
+![Toklet의 프로젝트 폴더와 4열 메모 카드 화면](docs/images/toklet-overview.png)
+
+<details>
+<summary>다크 모드와 메모 편집 화면 보기</summary>
+
+**다크 모드**
+
+![Toklet의 다크 모드 화면](docs/images/toklet-dark.png)
+
+**메모 편집**
+
+프로젝트를 선택하고 제목·본문을 수정하거나, 저장해둔 값을 바로 복사할 수 있습니다.
+
+![Toklet에서 샘플 요청 헤더를 편집하는 화면](docs/images/toklet-editor.png)
+
+</details>
+
 ## 만든 이유
 
 개발하다 보면 API 테스트에 필요한 토큰, 요청에 넣을 값, 자주 쓰는 명령어처럼 반복해서 복사하고 붙여넣는 내용이 많습니다.
