@@ -5,12 +5,19 @@ SwiftUI + AppKit + Carbon으로 만들었으며 외부 패키지, 로그인, 서
 
 ## 미리보기
 
-샘플 데이터로 실제 SwiftUI 화면을 렌더링한 예시입니다. 표시된 토큰과 요청 값은 예시용입니다.
+실제 SwiftUI 화면과 샘플 데이터로 사용 흐름을 재현한 GIF입니다. 표시된 토큰과 요청 값은 예시용입니다.
 
-![Toklet의 프로젝트 폴더와 4열 메모 카드 화면](docs/images/toklet-overview.png)
+![Toklet에서 검색 후 본문을 복사하고 목록 제목을 클릭해 복사하는 사용 흐름](docs/images/toklet-demo.gif)
+
+- **본문 복사:** ⌥ Space로 열기 → 검색 → Enter로 복사 → 작업하던 앱에서 ⌘V.
+- **제목 복사:** 메모 목록에서 제목 클릭 → 복사 완료 체크 표시 → 다른 입력란에 ⌘V. 제목을 복사하면 편집 창을 열지 않고 제목 텍스트를 바로 가져올 수 있습니다.
 
 <details>
-<summary>다크 모드와 메모 편집 화면 보기</summary>
+<summary>메인 화면·다크 모드·메모 편집 화면 보기</summary>
+
+**프로젝트 폴더와 메모 카드**
+
+![Toklet의 프로젝트 폴더와 4열 메모 카드 화면](docs/images/toklet-overview.png)
 
 **다크 모드**
 
